@@ -9,6 +9,17 @@
 	// Задача 2.
 	// Напишите функцию, возвращающую количество собственных вызовов.
 	
+	var counterCall = function() {
+		var counter = 0;
+		return function() {
+			return ++counter;
+		}
+	}
+
+	var numberOfCalls = counterCall();
+	numberOfCalls();
+	numberOfCalls();
+	numberOfCalls();
 	
 </script>
 </body>

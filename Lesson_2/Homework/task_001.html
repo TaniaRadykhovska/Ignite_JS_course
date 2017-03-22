@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	// Напишите функцию, которая принимает 1 параметр. При первом вызове она его запоминает, при втором - суммирует переданный параметр с параметром, переданным при предыдущем вызове.
+
+	function sumAll(){
+		var total = 0;
+		return function(number){
+			return total += number;
+		}
+
+	}
+
+	var sum = sumAll();
+	alert(sum(3));
+	alert(sum(5));
+	alert(sum(228)); 
+	</script>
+</body>
+</html>
