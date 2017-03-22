@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Array</title>
+</head>
+<body>
+		<!-- ###Задача 3. Дан массив чисел: [1,2,31,24,-67,5,3,555,79,-4,21,33,89,-90].
+
+		Найдите максимальное и минимальное значение массива.
+		Все положительные и четные числа запишите в другой массив. Результаты выведите на экран. -->
+	<script>
+		var input = [1,2,31,24,-67,5,3,555,79,-4,21,33,89,-90];
+		var	min = input[0],
+			max = input[0],
+			output = [];
+
+		// Найдите максимальное и минимальное значение массива.
+		for (var i = 0; i < input.length; i++) {
+			if (input[i] > max) {
+				max = input[i];
+			}
+			if (input[i] < min) {
+				min = input[i];
+			}
+			if (input[i] > 0 && input[i] % 2 == 0) {				
+				output.push(input[i]);
+			}
+		}
+		
+	</script>
+</body>
+</html>
