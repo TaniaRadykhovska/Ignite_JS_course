@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 2</title>
+</head>
+<body>
+	<script>
+// Напишите функцию compose, которая принимает значение в качестве основного параметра и произвольное количество функций в качестве дополнительных параметров. Функция должна вернуть значение, полученное путем использования основного параметра как аргумента для функций, переданных ей в качестве дополнительных аргументов. 
+// Если функции передан только один параметр, она должна вернуть его значение.
+		function compose(n) {
+			if (arguments.length == 1) {
+				return n;
+			}
+			arguments.slice = [].slice;
+			arguments.reduce = [].reduce;	
+			return arguments.slice(1).reduce(function (cur, func) {
+				return func(cur);
+			}, n);
+		}
+		var doubleTheValue = function(val) { return val * 2; }
+		var addOneToTheValue = function(val) { return val + 1; }
+		console.log(compose(5));
+		console.log(compose(5, doubleTheValue)); //должно вернуться значение 10
+		console.log(compose(5, doubleTheValue, addOneToTheValue)); // должно вернуться значение  11
+	</script>
+
+</body>
+</html>

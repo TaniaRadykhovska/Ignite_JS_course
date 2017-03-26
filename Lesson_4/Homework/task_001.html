@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+	<!-- Представьте, что в JavaScript нет метода call, есть только метод apply. Используя apply, напишите метод call. -->
+	<script>
+
+		function myCall(func, context) {
+			arguments.slice = [].slice;
+			var args = arguments.slice(2);
+			return function() {
+				return func.apply(context, args); 
+			};			
+		}
+ 
+function f(n, x) {
+  return this + ": " + n + x;
+}
+
+var g = myCall(f, "Context", "8", "asd");
+console.log(g()); // Context
+	</script>
+</body>
+</html>

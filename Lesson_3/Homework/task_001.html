@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+	<script>
+// Напишите функцию sum, которая будет работать как показано в примере ниже:
+// sum(1)(2) == 3; // 1 + 2
+// sum(1)(2)(3) == 6; // 1 + 2 + 3
+// sum(5)(-1)(2) == 6
+// sum(6)(-1)(-2)(-3) == 0
+// sum(0)(1)(2)(3)(4)(5) == 15
+// Количество скобок может быть любым.
+var total = 0;
+function sum(a) {
+	total += a;
+	return sum;
+}
+sum.toString = function () { return total;}
+
+alert(sum(1)(2)(3));
+	</script>
+</body>
+</html>

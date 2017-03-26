@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- Напишите функцию runString, которая:
+
+1)принимает 2 аргумента:
+
+arg: аргумент любого типа
+объект со свойствами:
+param: строка.
+func: строка, содержащая код функции.
+2)выполняет код функции func, переданной ей в качестве аргумента, с параметром arg. Например: -->
+	<script>
+		function runString(arg, obj){
+			eval('var func = function (' + obj.param + ') { ' + obj.func + ';}');
+			return func(arg);
+		}
+
+		var arg = 4,
+	    obj = {
+	      param: 'num',
+	      func: 'return Math.sqrt(num)'
+	    };
+
+alert(runString(arg, obj));
+	</script>
+</body>
+</html>

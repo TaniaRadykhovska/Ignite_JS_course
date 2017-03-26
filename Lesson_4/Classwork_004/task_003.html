@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 3</title>
+</head>
+<body>
+
+<script>
+//Напишите функцию joinArgs, которая выводит свои аргументы, разделенные символом ‘*’ на экран в виде строки. Используйте прием “одалживания методов”. 
+
+	function joinArgs() {
+		arguments.join = [].join;
+		var newArr = arguments.join('*');
+		alert(newArr);
+
+		// var newArr = Array.prototype.join.call(arguments, '*');
+		// alert(newArr);	
+	}
+
+	joinArgs(1,3,6);
+
+</script>
+	
+</body>
+</html>
