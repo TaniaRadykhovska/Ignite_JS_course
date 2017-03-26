@@ -12,10 +12,12 @@
 		var shooters = []; 
 
 		for (var i = 0; i< 10; i++) {
-		    var shooter = function current() { // функция-стрелок
-				alert(current.i); // выводит свой номер
-			}; 
-			shooter.i = i;
+		    var shooter = (function (j) { // функция-стрелок
+		    	return function(){
+		    		alert(j); // выводит свой номер
+		    	}					
+			})(i); 
+		
 			shooters.push(shooter); 
 		} 
 		return shooters; 

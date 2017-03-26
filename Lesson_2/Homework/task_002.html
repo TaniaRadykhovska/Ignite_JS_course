@@ -7,11 +7,16 @@
 <body>
 	<!-- Создайте функцию strCount, которая принимает один аргумент (объект) и считает количество свойств строкового типа. -->
 	<script>
-		function strCount(obj){
+		function strCount(obj) {
+			console.log(obj);
 			var num = 0;
 			for (prop in obj) {
-				if (typeof obj[prop] == "string") {
+				var item = obj[prop];
+				if (typeof item == "string") {
 					++num; 
+				}
+				if (typeof item == 'object') {
+					num += strCount(item);
 				}
 			}
 			return num;
@@ -22,7 +27,7 @@
 			key2: "name",
 			key3: 4,
 			key4: "null",
-			key5: true
+			key5: ['string', 5, ['adasd', 'asdasd']]
 		}
 		alert(strCount(object1));
 	</script>
