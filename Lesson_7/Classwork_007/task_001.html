@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+<style>
+	#red{
+		background-color: red;
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+	}
+</style>
+<!--  Создайте страницу. Разместите на ней произвольное количеством элементов. Разработайте сценарий, который будет по очереди перемещать span с текстом и интервалом в 400мс:
+
+Перед элементом.
+Внутри элемента перед тектом
+Внетри элемента после текста.
+После элемента. -->
+<div id="red"></div>
+<span id="workSpan">Hello world!</span>
+<ul>
+	<li>Item 1</li>
+	<li>Item 2</li>
+	<li>Item 3</li>
+	<li>Item 4</li>
+	<li>Item 5</li>
+</ul>
+
+<script>
+var el = document.querySelectorAll("ul li");
+var el2 = document.getElementById('workSpan');
+var functions = ['beforeBegin', 'afterBegin', 'beforeEnd', 'afterEnd'];
+var counter = 0;
+	setInterval(function() {
+		var item = Math.floor(counter / functions.length);
+		var position = counter - (item * functions.length);
+		el[item].insertAdjacentElement(functions[position], el2);
+		++counter;
+		if (counter > (el.length * functions.length)-1) {
+			counter = 0;
+		} 
+	}, 400);
+</script>
+</body>
+</html>

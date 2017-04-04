@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+<!-- Создайте регистрационную форму: логин, пароль, телефон и кнопка "Отправить". По нажатию на кнопку "Отправить", проверьте корректность ввода данных с помощью JavaScript.
+
+Логин - не должен содержать цифры.
+Пароль - не дожен содержать знак $.
+Телефон - должен содержать только цифры.
+Закрасьте фон поля ввода в красный цвет, если были введены неправильные данные. -->
+
+	<form>
+		<input id="login" placeholder="логин" type="text">
+		<input id="password" placeholder="пароль" type="password">
+		<input id="phone_number" placeholder="ваш телефон" type="text">
+
+		<button id="submit" type="submit">Отправить</button>
+	</form>
+	
+	<script>
+		var login = document.getElementById('login');
+		var password = document.getElementById('password');
+		var phone_number = document.getElementById('phone_number');
+		var submit = document.getElementById('submit');
+
+		submit.onclick = function() {
+			var confirm = true;
+			if (login.value == "" || /\d/.test(login.value)) {
+				login.style.backgroundColor = "#f78080";
+				confirm = false;
+			} else {
+				login.style.backgroundColor = "";
+			}
+			if (password.value == "" || /\$/.test(password.value)) {
+				password.style.backgroundColor = "#f78080";
+				confirm = false;
+			} else {
+				password.style.backgroundColor = "";
+			}
+			if (!(/^\d+$/.test(phone_number.value))) {
+				phone_number.style.backgroundColor = "#f78080";
+				confirm = false;
+			} else {
+				phone_number.style.backgroundColor = "";
+			}
+			if (!confirm) {
+				return false;
+			}
+		};
+
+	</script>
+
+</body>
+</html>

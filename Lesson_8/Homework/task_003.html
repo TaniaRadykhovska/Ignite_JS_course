@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 3</title>
+</head>
+<body>
+<style>
+	span {
+		display: inline-block;
+		padding: 10px;
+		border: 1px solid;
+		border-radius: 2px;
+		width: 10px;
+		height: 20px
+	}
+	span:hover{
+		cursor: pointer;
+	}
+</style>
+<!-- Создайте страницу-калькулятор. Разместите на странице два поля ввода и кнопки для арифметических операций над данными введенными в поля ввода. Реализуйте данную страницу двумя способами – с использованием модели DOM Level 0 (через атрибуты) и DOM Level 2. -->
+	<span id="plus" onclick="plusCount()">+</span>
+	<span id="subtraction" onclick="subtractionCount()">-</span>
+	<span id="division" onclick="divisionCount()">/</span>
+	<span id="product" onclick="productCount()">*</span>
+	<hr>
+	<input type="text">
+	<input type="text">
+
+	<script>
+		var plus = document.getElementById('plus');
+		var subtraction = document.getElementById('subtraction');
+		var division = document.getElementById('division');
+		var product = document.getElementById('product');
+		var figures = document.getElementsByTagName('input');
+		alert1 = function() {
+					alert("Введіть коректні числа");
+				};
+		alert2 = function(result) {
+					alert( "Результат = " + result);
+				};
+
+		function plusCount() {
+			var Result = +figures[0].value + +figures[1].value;
+			isNaN(Result) ? alert1() : alert2(Result);
+		}
+		function subtractionCount() {
+			var Result = +figures[0].value - +figures[1].value;
+			isNaN(Result) ? alert1() : alert2(Result);
+		}
+		function divisionCount() {
+			var Result = +figures[0].value / +figures[1].value;
+			isNaN(Result) ? alert1() : alert2(Result);
+		}
+		function productCount() {
+			var Result = +figures[0].value * +figures[1].value;
+			isNaN(Result) ? alert1() : alert2(Result);
+		}
+
+ // DOM Level 2
+		// plus.addEventListener("click", function(){
+		// 	var Result = +figures[0].value + +figures[1].value;
+		// 	isNaN(Result) ? alert1() : alert2(Result);
+		// });
+
+		// subtraction.addEventListener("click", function(){
+		// 	var Result = +figures[0].value - +figures[1].value;
+		// 	isNaN(Result) ? alert1() : alert2(Result);
+		// });
+
+		// division.addEventListener("click", function(){
+		// 	var Result = +figures[0].value / +figures[1].value;
+		// 	isNaN(Result) ? alert1() : alert2(Result);
+		// });
+
+		// product.addEventListener("click", function(){
+		// 	var Result = +figures[0].value * +figures[1].value;
+		// 	isNaN(Result) ? alert1() : alert2(Result);
+		// });
+	</script>
+</body>
+</html>

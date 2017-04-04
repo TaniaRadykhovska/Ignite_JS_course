@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 3</title>
+</head>
+<body>
+
+<script>
+// Напишите функцию, которая принимает один аргумент и возвращает его тип данных. Выполните обработку исключений в случае передачи двух и больше аргументов.
+	function getType(arg) {
+		if (arguments.length > 1) {
+			throw new Error('error');
+		}
+		return typeof arg;
+	}
+	try {
+		console.log(getType(2));
+		console.log(getType(3, 6, "cf"));
+	}
+	catch(e) {
+		console.log("Caught error: " + e.name);
+	}
+</script>
+	
+</body>
+</html>

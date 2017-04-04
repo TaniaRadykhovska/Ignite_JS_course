@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+	<style>
+		div {
+			display: inline-block;
+			font-weight: bold;
+			width: 100px;
+			height: 100px;
+			line-height: 100px;
+		}
+		.red{background: #f13658;}
+		.yellow{background: #ffff6a;}
+		.green{background: #51bb51;}
+	</style>
+	<!-- Создайте страницу с 3 элементами div. Напишите сценарий, который будет произвольно менять положение этиx элементов на странице каждую секунду. -->
+	<span id="holder">
+		<div class="red">Елемент div1</div>
+		<div class="yellow">Елемент div2</div>
+		<div class="green">Елемент div3</div>
+	</span>	
+
+	<script>
+		var el = document.getElementsByTagName('div');
+		var holder = document.getElementById('holder');
+		var parent = el.parentNode;
+		var el_number = Object.keys(el);
+		var arr = [];
+
+		function getRandomInt(min, max) {
+		 	return Math.floor(Math.random() * (max - min)) + min;
+		}
+
+		for (var i = 0; i < el.length; i++) {
+			arr.push(i);
+		}
+
+		setInterval( function() {
+			fragment = document.createDocumentFragment();
+			while (el.length) {
+				fragment.appendChild(el[getRandomInt(0, el.length)]);
+			}
+			holder.innerHTML = '';
+			holder.appendChild(fragment);
+		}, 1000);
+	</script>
+</body>
+</html>

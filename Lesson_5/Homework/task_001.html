@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+	<script>
+	// Напишите программу, которая принимает математическое выражение (используйте prompt) и результат его получает через eval. При ошибке нужно выводить сообщение и просить изменить некорректный ввод. Ошибкой считается не только некорректное выражение, такое как 2+, но и выражение, возвращающее NaN, например 0/0.
+		function calc() {	
+			try {
+				var input = prompt('математическое выражение:', '');
+				var output = eval(input);
+				if (!isFinite(output)) {
+					throw new Error('Result is not a number');
+				}
+				alert("Результат = " + output);
+
+			} catch (e) {
+				calc();
+		 	}
+		}
+
+		calc();
+	</script>
+</body>
+</html>

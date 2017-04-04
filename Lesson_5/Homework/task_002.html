@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 2</title>
+</head>
+<body>
+	<script>
+// Напишите функцию smartSum, которая:
+
+// Принимает произвольное количество аргументов;
+// Возвращает сумму всех переданных ей аргументов;
+// Принимает за 0 любой аргумент, который не может быть преобразован в числовой тип (т.е при попытке его парсить возвращается NaN);
+// Может быть вызвана неограниченное количество раз;
+// smartSum(3) // 3; 
+// smartSum(1, 2)  // 3;
+// smartSum(1, 3)(2) // 6; 
+// smartSum(1, 2)(3, 4, 5)(6)(7, 10) // 38;
+
+function smartSum() {
+	var total = 0;
+	var f = function () {
+		arguments.reduce = [].reduce;
+		total += arguments.reduce(function(sum, current) {
+			if (isNaN(current)) {
+				current = 0;
+			}
+			return sum + current;
+		}, 0);
+		return f;
+	};
+	f.toString = function () {
+		return total;
+	};
+	return f.apply(f, arguments);
+}
+console.log(smartSum(1,2)(3,4)("vf",8));
+	</script>
+</body>
+</html>

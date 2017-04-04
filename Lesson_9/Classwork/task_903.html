@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 3</title>
+</head>
+<body>
+<!-- Создайте поле ввода. При помощи событий клавиатуры сделайте так, чтобы в поле можно было вводить только цифры. -->
+
+<input id="inputNumber" type="text">
+
+<script>
+	var inputNumber = document.getElementById('inputNumber');
+
+	inputNumber.onkeypress= function(event){
+		if ( event.keyCode > 57 || event.keyCode < 48) {
+			return false;
+		};
+	}
+
+</script>
+</body>
+</html>

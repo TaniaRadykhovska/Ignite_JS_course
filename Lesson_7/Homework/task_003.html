@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 3</title>
+</head>
+<body>
+	<!-- Напишите функцию makeBoard, которая генерирует таблицу с указанным количеством строк и столбцов и закрашивает ее ечейки черным и белым цветами в шахматном порядке. -->
+	<style>
+		td {
+			width: 30px;
+			height: 30px;
+			border: 1px solid #000;
+		}
+	</style>
+	<script>
+		function makeBoard(a, b) {
+			var table = document.createElement("table");
+			for (var i = 0; i < a; i++) {
+				var tr = document.createElement("tr");
+				for (var j = 0; j < b; j++) {
+					var td = document.createElement('td');		
+					tr.appendChild(td);
+					if (i % 2 == 0 && j % 2 == 0) {
+						td.style.backgroundColor = "green";
+					} else if (i % 2 ==! 0 && j % 2 ==! 0){
+						td.style.backgroundColor = "green";
+					}
+				}
+				table.appendChild(tr);
+			}
+			var body = document.querySelector("body");
+			body.appendChild(table);
+		}
+		makeBoard(10,10);
+	</script>
+
+</body>
+</html>

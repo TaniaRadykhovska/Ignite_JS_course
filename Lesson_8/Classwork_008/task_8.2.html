@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 2</title>
+</head>
+<style>
+	div {
+		width: 500px;
+		height: 500px;
+		border-radius: 4px;
+		border: 1px solid #000;
+	}
+</style>
+<body>
+<!-- Создайте страницу. Разместите на странице поле ввода, кнопку и пустой div.
+Создайте сценарий, который при нажатии на кнопку будет записывать содержимое поля ввода в пустой div. -->
+	<form onsubmit="return false;">
+		<input id="text" type="text">
+		<input id="submit" type="submit">
+	</form>
+	<hr>
+	<div>
+		
+	</div>
+
+	<script>
+			var submit = document.getElementById('submit');
+			var textField = document.getElementById('text');
+			var div = document.getElementsByTagName('div')[0];
+
+			submit.addEventListener("click", function() {
+				var	text = textField.value;
+				div.innerText = text;
+				// div.appendChild(document.createTextNode(text));  
+			});
+	</script>
+</body>
+</html>

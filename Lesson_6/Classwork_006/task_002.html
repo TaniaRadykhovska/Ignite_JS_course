@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 2</title>
+</head>
+<body>
+ <div id="widget" data-widget-name="menu">Выберите жанр</div>
+
+  <script>
+	// Напишите код, который получит объект для тега div и запишите его в переменную.
+	// Запишите значение атрибута "data-widget-name" в переменную.
+
+		var widget = document.getElementsByTagName('div');
+		var detail = widget[0].dataset.widgetName;
+		var detail = widget[0].getAttribute('data-widget-name');
+		console.log(widget);
+		console.log(detail);
+	
+
+  </script>
+</body>
+</html>

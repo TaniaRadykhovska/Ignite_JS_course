@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 3</title>
+</head>
+<body>
+<!-- Создайте страницу с двумя полями ввода, кнопкой и элементом div с шириной и высотой 50px. Создайте сценарий, который по нажатию на кнопку будет перемещать div в координаты, указанные в полях ввода. В случае, если при нажатии кнопки хотя бы одно из полей ввода не заполнено, пользователь должен получить предупреждение, а событие click должно быть отменено. -->
+<style>
+	div {
+		width: 50px;
+		height: 50px;
+		border: 1px solid #000;
+		position: absolute;
+	}
+	input{
+		margin-bottom: 10px;
+	}
+</style>
+	<input id="top" type="text">
+	<input id="left" type="text">
+	<button id="enter">Enter</button>
+	<div id="elem"></div>
+
+	<script>
+		var topPosition = document.getElementById("top");
+		var leftPosition = document.getElementById("left");
+		var enter = document.getElementById("enter");
+		var elem = document.getElementById("elem");
+
+		enter.onclick = function (e) {
+			if ( isNaN(topPosition.value) || isNaN(leftPosition.value) || topPosition.value == '' || leftPosition.value == '') {
+				alert ("ВВедіть числові координати");
+				return false;
+			}
+
+			elem.style.top = topPosition.value + "px";
+			elem.style.left = leftPosition.value + "px";
+		};
+
+	</script>
+</body>
+</html>

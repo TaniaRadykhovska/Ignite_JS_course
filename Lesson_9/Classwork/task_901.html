@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+	<!-- Создайте страницу. Реализуйте следующее:
+
+При нажатии комбинации клавиш ctrl + a (регистр не учитывается!) на экран выводится сообщение ‘Данные выбраны’;
+При нажатии комбинации клавиш ctrl + s (регистр не учитывается!) на экран выводится сообщение ‘Данные сохранены’;
+ -->
+ <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem inventore magnam, ut doloribus quas maiores, voluptate eius, neque unde, voluptatibus facilis! Fugit soluta, reiciendis. Deserunt facere molestias, architecto aspernatur repellendus!</div>
+<script>
+	
+	document.addEventListener('keydown', function(e) {
+		if (e.keyCode == 65 && e.ctrlKey == true ) {
+			alert("Данные выбраны");
+		}
+	});
+
+	document.addEventListener('keydown', function(e) {
+		console.log(e.keyCode);
+		if (e.keyCode == 83 && e.ctrlKey == true ) {
+			alert("Данные сохранены");
+		}
+	});
+
+</script>
+</body>
+</html>

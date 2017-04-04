@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 2</title>
+</head>
+<body>
+	<!-- Создайте функцию positionAt(anchor, position, elem), которая позиционирует элемент elem, в зависимости от значения аргумента position: сверху ("top"), справа ("right") или снизу ("bottom"). Функция должна проводить позиционирование относительно элемента anchor. Для решения данной задачи Вам понадобится создать элемент anchor (тег а) и elem (тег div). -->
+	<style>
+		body {
+			padding-top: 50px;
+		}
+		#elem {
+			position: absolute;
+			padding: 2px 5px;
+			background: #b9b9b9;
+			border: 1px solid;
+			border-radius: 2px;
+		}
+		#anchor {
+			display: inline-block;
+		}
+	</style>
+
+	<div id="elem">Перейдіть по силці</div>
+	<a id="anchor" href="#">Силка</a>
+
+	<script>
+		var elem = document.getElementById('elem');
+		var anchor = document.getElementById('anchor');
+		function positionAt(anchor, position, elem) {
+			var coords = anchor.getBoundingClientRect();			
+			var top = coords.top - 30 + "px";
+			var right = coords.right + 10 + "px";
+			var bottom = coords.bottom + 10 + "px";
+			switch ( position ) {
+				case 'top':
+					elem.style.top = top;
+					break;
+				case 'right':
+					elem.style.left = right;
+					break;
+				case 'bottom': 
+					elem.style.top = bottom;
+					break;
+			}
+
+		}
+		positionAt( anchor, "top", elem );
+		// positionAt( anchor, "right", elem );
+		// positionAt( anchor, "bottom", elem );
+	</script>
+	
+</body>
+</html>
