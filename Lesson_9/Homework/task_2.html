@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 2</title>
+</head>
+<body>
+<!-- Создайте круг красного цвета с надписью "Скидка". Когда курсор пользователя будет приближаться к ней, "Скидка" должна от него "убегать", не давая пользователю нажать на красный круг. Если круг выйдет за одну из сторон экрана, то он должен, появится с противоположной стороны. -->
+	<style>
+		#sale{
+			text-align: center;
+			width: 100px;
+			height: 100px;
+			line-height: 100px;
+			font-size: 24px;
+			font-weight: bold;
+			color: #fff;
+			background: red;
+			border-radius: 50%;
+			position: absolute;
+		}
+	</style>
+	<div id="sale">Скидка</div>
+
+	<script>
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+		var sale = document.getElementById('sale');		
+		sale.onmouseover = function (e) {
+			document.body.appendChild(sale);
+			sale.style.zIndex = 1000;
+
+			var move = Math.floor((Math.random() * 10) + 150);
+			var directionX = (Math.random() < 0.5) ? -1 : 1;
+			var directionY = (Math.random() < 0.5) ? -1 : 1;
+
+			var positionX = e.pageX + directionX * move;
+			var positionY = e.pageY + directionY * move;
+
+			if (positionX < 0) {
+				positionX = width - sale.offsetWidth;
+			}
+			if (positionX > width - sale.offsetWidth) {
+				positionX = 0;
+			}
+			if (positionY < 0) {
+				positionY = height - sale.offsetHeight;
+			}
+			if (positionY > height - sale.offsetHeight) {
+				positionY = 0;
+			}
+ 
+			sale.style.left = positionX + 'px';
+			sale.style.top = positionY + 'px';
+
+		}
+	</script>
+</body>
+</html>
