@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="inputApp" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task_11.2</title>
+	<!-- Создайте страницу с полем ввода и кнопкой. При нажатии на кнопку содержимое поля ввода должно отображаться на странице. -->
+	<script src="libs/angular.js"></script>
+	<script>
+		angular.module("inputApp", [])
+		.controller("inputAppCtrl", ['$scope', function(a) {
+
+			a.showInput = function(){
+				document.getElementById('text').innerText = a.input;
+			};
+
+		}])
+	</script>
+</head>
+<body ng-controller="inputAppCtrl">
+<input type="text" placeholder="Enter yor text" ng-model="input">
+<input type="button" value="enter" ng-click="showInput()">
+<p id="text"></p>
+</body>
+</html>

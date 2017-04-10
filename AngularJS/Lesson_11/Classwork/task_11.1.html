@@ -1,0 +1,21 @@
+
+	<!-- Создайте приложение, которое выводит на экран надпись 'Hello World!'. -->
+<!DOCTYPE html>
+<html ng-app="writeText" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task 11</title>
+	<script src="libs/angular.js"></script>
+	<script>
+		var text = 'Hello word!';
+
+		angular.module("writeText", [])
+		.controller("writeTextCtrl", ['$scope', function(a) {
+			a.message = text;
+		}]);
+	</script>
+</head>
+<body ng-controller="writeTextCtrl">
+	<p>{{message}}</p>
+</body>
+</html>
