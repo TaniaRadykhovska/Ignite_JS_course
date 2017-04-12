@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="listToDo" lang="ru">
+<head>
+	<title>ToDo List (Task1)</title>
+	<meta charset="UTF-8" />
+	<script src="libs/angular.js"></script>
+	<link href="libs/bootstrap.css" rel="stylesheet" />
+	<link href="libs/bootstrap-theme.css" rel="stylesheet" />
+	<script>
+
+		var model = {
+			tasks: [
+				{	name: "Купить молоко", 
+					description: "Сходить на ринок и купить молоко",
+					date: "4.18.2017",
+					completed: false },
+				{	name: "Посмотреть видео урок по AngularJS", 
+					description: "Досмотреть до конца урок на itvdn.com",
+					date: "4.18.2017",
+					completed: false }
+			]
+		};
+			
+		angular.module("listToDo", [])
+		.controller("ListToDoCtrl", function($scope) {
+			$scope.data = model;
+		
+			$scope.addNewTask = function () {
+				
+				$scope.data.tasks.push({
+					name: $scope.taskName,
+					description: $scope.taskDescription,
+					date: $scope.taskDate,
+					completed: $scope.taskCompleted
+				});
+
+				$scope.taskName = "";
+				$scope.taskDescription = "";
+				$scope.taskDate = "";
+				$scope.taskCompleted = false;
+			}
+			$scope.showText = function (completed) {
+                return completed ? "Yes" : "No";
+            }
+		})
+	</script>
+
+</head>
+<body>
+
+	<div class="container"  ng-controller="ListToDoCtrl">
+		<h3>ToDo List</h3>
+		<p> У вас {{data.tasks.length}} task(s)</p>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Date</th>
+					<th>Completed</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="task in data.tasks">
+				<td>{{task.name}}</td>
+				<td>{{task.description}}</td>
+				<td>{{task.date}}</td>
+				<td>{{showText(task.completed)}}</td>
+			</tr>
+		</table>
+
+		<div>
+			<!-- Форма для добавления новых задач -->
+			<form>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" placeholder="name" ng-model="taskName" >
+				</div>
+				<div class="form-group">
+					<label for="date">Due Date</label>
+					<input type="text" class="form-control" id="date" placeholder="due date" ng-model="taskDate" >
+				</div>
+				<div class="form-group">
+					<label for="description">Description</label>
+					<textarea class="form-control" id="description" placeholder="description" ng-model="taskDescription" ></textarea>
+				</div>
+				<div class="form-group">
+					<label for="completed">Completed</label>
+					<br>
+					<input type="checkbox" id="completed" ng-model="taskCompleted"/>	
+				</div>
+				<button type="submit" class="btn btn-default" ng-click="addNewTask()">Add</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
