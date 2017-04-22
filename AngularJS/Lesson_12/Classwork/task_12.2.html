@@ -1,15 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="fillingTable">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-</head>
-<body>
-<!-- Используйте таблицу с данными массива items из предыдущей задачи. Реализуйте следующее:
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+
+	<!-- Используйте таблицу с данными массива items из предыдущей задачи. Реализуйте следующее:
 
 Добавьте на страницу 5 элементов checkbox с именами свойств элементов массива items(name, price и т.д.)
 Нажатие на каждый из checkbox скрывает/отображает соответствующее свойство элементов массива items в таблице
 Используйте директиву ng-switch -->
 	
+	<script>
+		angular.module ("fillingTable", [])
+		.controller ("fillingTableCtrl", function ($scope) {
+			$scope.items = [
+				{ name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+				{ name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+				{ name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+				{ name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+
+			$scope.selection = {
+				name: true,
+				price: true,
+				category: true,
+				count: true,
+				tax: true,
+				expiration: true
+			};
+
+		})
+	</script>
+</head>
+<body ng-controller="fillingTableCtrl">
+	<div class="container">
+
+		<label for="name">
+			name
+			<input type="checkbox" id="name" ng-model="selection.name">
+		</label>
+		<label for="price">
+			price
+			<input type="checkbox" id="price" ng-model="selection.price">
+		</label>
+		<label for="category">
+			category
+			<input type="checkbox" id="category" ng-model="selection.category">
+		</label>
+		<label for="count">
+			count
+			<input type="checkbox" id="count" ng-model="selection.count">
+		</label>
+		<label for="tax">
+			tax
+			<input type="checkbox" id="tax" ng-model="selection.tax">
+		</label>
+		<label for="expiration">
+			expiration
+			<input type="checkbox" id="expiration" ng-model="selection.expiration">
+		</label>
+
+		<table class="table">
+			<tbody class="table-hover" ng-repeat="item in items">
+				<tr>
+					<td ng-switch="selection.name">
+						<span ng-switch-when="true">{{item.name}}</span>
+					</td>
+					<td ng-switch="selection.price">
+						<span ng-switch-when="true">{{item.price}}</span>
+					</td>
+					<td ng-switch="selection.category">
+						<span ng-switch-when="true">{{item.category}}</span>
+					</td>
+					<td ng-switch="selection.count">
+						<span ng-switch-when="true">{{item.count}}</span>
+					</td>
+					<td ng-switch="selection.tax">
+						<span ng-switch-when="true">{{item.tax}}</span>
+					</td>
+					<td ng-switch="selection.expiration">
+						<span ng-switch-when="true">{{item.expiration}}</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+<head>
+	<meta charset="UTF-8">
+	<title>Homework_s12.3</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+<!-- Реализуйте SPA приложение, в котором пользователю представляется пройти тест из 5 вопросов, в каждом вопросе по 4 варианта ответа. Вопросы должны выбираться с помощью radio-button и когда выбран, например, вопрос №1, то на странице должны появится варианты ответа только для этого вопроса. В конце тестирования отобразите результат теста. При решении данной задачи используйте директиву ng-switch. -->
+	<script>
+		angular.module("test", [])
+		.controller("testCtrl", function($scope) {
+			$scope.questions = [
+				{question: "За одиницю вимірювання кількості інформації прийнято:", answers: ["1 байт", "1 біт", "64 байти", "1 бот"], correct: 1, selected: null},
+				{question: "Ідентифікатор True означає …", answers: ["Константа", "Істина", "Хибність", "Змінна"], correct: 1, selected: null},
+				{question: "Ідентифікатор False означає …", answers: ["Константа", "Істина", "Хибність", "Змінна"], correct: 2, selected: null},
+				{question: "Величини, які можуть набувати лише одного із двох значень: істина або хибність, називаються …", answers: ["числовими", "символьними", "рядковими", "логічними"], correct: 3, selected: null},
+				{question: "Сортування від наймолодшого до найстаршого та Сортування від найстаршого до наймолодшого відбувається коли в полі розміщені...", answers: ["текстові значення", "числові значення", "немає різниці", "значення типу дата і час"], correct: 1, selected: null}
+			]
+
+			$scope.selected = {value: null};
+			$scope.question = null;
+			$scope.finished = false;
+
+			$scope.change = function () {
+				$scope.question = $scope.questions[$scope.selected.value];
+			}
+
+			$scope.selectAnswer = function () {
+				var result = true;
+				for ( var key in $scope.questions ) {
+					if ($scope.questions[key].selected == null) {
+						result = false;
+						break;
+					}
+				}
+				$scope.finished = result;
+			}
+
+			$scope.getCorrect = function () {
+				var counter = 0;
+				for ( var key in $scope.questions ) {
+					if ($scope.questions[key].correct == $scope.questions[key].selected) {
+						counter++;
+					}
+				}
+				return counter;
+			}
+		})	
+	</script>
+
+</head>
+<body ng-controller="testCtrl">
+
+	<div ng-switch="finished">
+		<div ng-switch-when="false">
+			<div class="container panel" ng-repeat="item in questions">
+				<input type="radio" ng-model="selected.value" value="{{ $index }}" ng-change="change()"> {{ item.question }} <br>
+			</div>
+
+			<div ng-if="question" class="container">
+				<b> {{ question.question }} </b>
+				<p ng-repeat="answer in question.answers">
+					<input type="radio" ng-model="question.selected" value="{{ $index }}" ng-change="selectAnswer()"> {{ answer }}
+				</p>
+			</div>
+		</div>
+
+		<div ng-switch-when="true" class="container">
+			Ваш результат: {{ getCorrect() }} / {{ questions.length }}
+		</div>
+	</div>
+</body>
+</html>

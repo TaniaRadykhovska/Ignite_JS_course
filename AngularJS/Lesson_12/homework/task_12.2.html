@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="switchContent">
+<head>
+	<meta charset="UTF-8">
+	<title>Homework 12.2</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+
+	<script>
+		angular.module('switchContent', [])
+		.controller('switchContentCtrl', function($scope){
+			$scope.items = [
+				{ name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+				{ name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+				{ name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+				{ name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+
+			$scope.options = [{display: "Таблица", value: "table"}, {display: "Список", value: "list"}];
+
+			$scope.choice = $scope.options[1];
+
+		})
+	</script>
+	<!-- Дано массив items:
+
+   $scope.items = [
+           { name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+           { name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+           { name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+           { name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+Создайте страницу с элементом select. Реализуйте следующее: В зависимости от выбранного варианта в списке select, на экране отображаются данные массива или в виде таблицы, или в виде списка -->
+</head>
+<body>
+	<div class="container" ng-controller="switchContentCtrl">
+		<select class="form-control" ng-model="choice" ng-options="item as item.display for item in options"></select>
+
+		<div ng-switch on="choice.value">
+			<div ng-switch-when="table">
+				<table class="table table-bordered">
+					<thead>
+						<th></th>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Category</th>
+						<th>Count</th>
+						<th>Tax</th>
+						<th>Expiration</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items" ng-cloak>
+							<td>{{$index + 1}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.price}}</td>
+							<td>{{item.category}}</td>
+							<td>{{item.count}}</td>
+							<td>{{item.tax}}</td>
+							<td>{{item.expiration}}</td>
+						</tr>
+					</tbody>
+				</table>			
+			</div>
+			<div ng-switch-when="list">
+				<ul ng-repeat="item in items">
+					<li> <b>name</b>: {{item.name}} <b>price</b>: {{item.price}} <b>category</b>: {{item.category}} <b>count</b>: {{item.count}} <b>tax</b>: {{item.tax}} <b>expiration</b>: {{item.expiration}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

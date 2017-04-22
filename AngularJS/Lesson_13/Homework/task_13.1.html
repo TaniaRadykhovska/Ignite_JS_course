@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="changeText">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		.color {
+			color: lightblue;
+		}
+		.size {
+			font-size: 20px;
+		}
+		.font {
+			font-style: italic;
+		}
+	</style>
+	<script>
+		angular.module("changeText", [])
+		.controller("changeTextCtrl", ["$scope", function (a) {
+
+			a.classObj = {
+				color: false,
+				size: false,
+				font: false
+			}
+
+			a.selectStyle = function(className) {
+
+				for (key in a.classObj) {
+					a.classObj[key] = false;
+				}
+
+				a.classObj[className] = true;
+			}
+
+		}])
+
+	</script>
+</head>
+<body>
+<!-- Создайте три разных CSS класса, которые по-разному будут оформлять блок текста на странице. Реализуйте возможность выбирать стиль для оформления страницы с помощью кнопок или checkbox -->
+	<div class="container" ng-controller="changeTextCtrl">
+		<br>
+		<button class="btn" ng-click="selectStyle('color')">Color</button>
+		<button class="btn" ng-click="selectStyle('size')">Size</button>
+		<button class="btn" ng-click="selectStyle('font')">Font</button>
+
+		<br>
+		
+		<p ng-class="classObj">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+	</div>
+	
+</body>
+</html>

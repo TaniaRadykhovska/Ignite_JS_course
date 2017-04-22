@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 13.2</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		.div {
+			padding: 5px;
+			border-radius: 3px;
+			border: 1px solid;
+			margin-bottom: 10px;
+			width: 45%;
+			margin-right: 5%;
+			float: left;
+		}
+	</style>
+	<script>
+	
+	angular.module("myApp", [])
+	.controller("mainCtrl", function($scope) {
+		$scope.blocks = ["CSS", "HTML", "Bootstrap", "JavaScript", "jQuery", "AngularJS", "ReactJS", "NodeJS", "Git", "PHP"];
+
+		$scope.filterFunc = function(block) {
+			if ($scope.filteredBlock == "" || $scope.filteredBlock == block) {
+				return block;
+			}
+		}
+		$scope.filteredBlock = "";
+		$scope.runFilter = function() {
+			$scope.filteredBlock = $scope.filterText;
+		}
+	})
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+<!-- Создайте страницу с десятью тегами div с текстом, полем ввода и кнопкой. Добавьте фильтр, который при вводе значения в поле и после нажатия на кнопку, покажет пользователю только те блоки, текст в которых соответствуют введеному значению. Остальные блоки должны быть скрыты. -->
+
+	<div class="container">
+		<div ng-repeat="block in blocks | filter : filterFunc">
+			<div class="div">{{ block }}</div>
+		</div>
+
+
+		<input class="input-sm" type="text" value="{{ filterText }}" ng-model="filterText">
+		<button class="btn-sm btn-succes" ng-click="runFilter()">Filter</button>
+	</div>
+
+
+</body>
+</html>
