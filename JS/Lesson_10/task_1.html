@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+</head>
+<body>
+	<!-- Создайте страницу с кнопкой. Создайте код, который загрузит на страницу картинку img.jpg (файл находитя в папке classwork) асинхронно через 5 секунд после нажатие на кнопку страницы. -->
+	
+	<button id="btn">Загрузить картинку</button>
+	<div id="output"></div>
+	<script>
+		document.getElementById("btn").onclick = function () {
+			setTimeout ( function() {
+				document.getElementById("output").innerHTML = "<img src = classwork/img.jpg />" + '<br/>';
+			}, 5000);
+		} 
+	</script>
+</body>
+</html>

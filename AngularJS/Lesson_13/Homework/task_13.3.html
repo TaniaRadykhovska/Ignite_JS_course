@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="registerForm">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 13.3</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		input.ng-invalid.ng-dirty {
+			background: #ffaeae;
+		}
+		input.ng-valid.ng-dirty {
+			background: #80fd80;
+		}
+		.panel {
+			width: 600px;
+			margin: 10px auto;
+		}
+	</style>
+
+	<script>
+		angular.module("registerForm", [])
+		.controller("registerFormCtrl", function ($scope) {
+			$scope.nameRegex = /^.{3,20}$/; 
+			$scope.mailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]+$/; 
+			$scope.phoneRegex = /^[0-9]*$/;
+			$scope.passwordRegex = /.{6,20}$/;
+
+			$scope.submitHandler = function(isvalid) {
+				if (isvalid) {
+					alert('Спасибо! Ваша регистрация принята!!!)')
+				}
+				else {
+					alert('Форма заполнена некорректно или не все поля заполнены!'); 
+				}
+			}
+		})
+		.directive('confirmPassword', function() {
+			return {
+			    require: 'ngModel',
+			    link: function(scope, elm, attrs, ctrl) {			    	
+		    		ctrl.$validators.confirmPassword = function(modelValue, viewValue) {
+		    			return ctrl.$isEmpty(modelValue) || modelValue == scope.registration.password;
+		      		};
+		    	}
+		  	};
+		});
+	</script>
+</head>
+<!-- Создайте форму для регистрации нового пользователя. Форма должна содержать поля: ФИО, email, телефон, пароль, подтверждение пароля. Реализуйте real-time валидацию пользовательского ввода. -->
+<body>
+	<div class="panel well" ng-controller="registerFormCtrl">
+		<form name="registrationForm" novalidate ng-submit=submitHandler(registrationForm.$valid)>
+			<div class="form-group">
+				<input class="input-md form-control" required type="text" placeholder="ФИО" ng-pattern="nameRegex" ng-model="registration.name">
+			</div>
+			<div class="form-group">
+				<input class="input-md form-control" required type="text" placeholder="email" ng-pattern="mailRegex" ng-model="registration.email">
+			</div>
+			<div class="form-group">
+				<input class="input-md form-control" required type="text" placeholder="телефон" ng-pattern="phoneRegex" ng-model="registration.phone">
+			</div>
+			<div class="form-group">
+				<input class="input-md form-control" required type="text" placeholder="пароль" ng-pattern="passwordRegex" ng-model="registration.password">
+			</div>
+			<div class="form-group">
+				<input class="input-md form-control" required type="text" placeholder="подтверждение пароля" confirm-password ng-model="registration.confirmPassword">
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Зарегистрироваться" class="btn-success btn-md btn" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

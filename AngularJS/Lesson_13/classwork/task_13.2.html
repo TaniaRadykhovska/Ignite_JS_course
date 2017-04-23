@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Дано массив items:
+
+     $scope.items = [
+             { name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+             { name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+             { name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+             { name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+С помощью директивы ng-repeat создайте таблицу, отображающую данные массива.
+
+Отфильтруйте данные массива таким образом, чтобы:
+
+Элементы отображались в алфавитном порядке (по свойству name)
+Свойство tax отображалось в формате currency-->
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 13.2</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+
+	<script>
+		angular.module("myApp", [])
+		.controller("mainCtrl", function ($scope) {
+			$scope.items = [
+				{ name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+				{ name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+				{ name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+				{ name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }
+			];
+
+			$scope.sortFunc = function (item) {
+				return item.name;
+			}
+		})
+	</script>
+</head>
+<body>
+	<div class="container" ng-controller="mainCtrl">
+		<table class="table bordered-table">
+			<thead>
+				<tr>
+					<td>name</td>
+					<td>price</td>
+					<td>category</td>
+					<td>count</td>
+					<td>tax</td>
+					<td>expiration</td>
+				</tr>
+				<tr ng-repeat="item in items | orderBy : sortFunc">
+					<td> {{ item.name }} </td>
+					<td> {{ item.price }} </td>
+					<td> {{ item.category }} </td>
+					<td> {{ item.count }} </td>
+					<td> {{ item.tax | currency }} </td>
+					<td> {{ item.expiration }} </td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Создайте страницу с элементом div и кнопкой. Реализуйте следующее: При нажатии на кнопку элементу div присваиваются два произвольных CSS-класса -->
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 13.1</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+
+	<style>
+		.div {
+			border: 1px solid #000;
+			padding: 15px;
+			margin-bottom: 10px;
+		}
+		div.color {
+			background: #edc0ff;
+		}
+		div.border {
+			border: 5px solid #c37171;
+			border-radius: 10px;
+		}
+	</style>
+
+	<script>
+		angular.module("myApp", [])
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="div" ng-class="myVar"></div>
+		<button class="btn btn-sm btn-info" ng-click="myVar='color border'">Click me!</button>
+	</div>
+</body>
+</html>
