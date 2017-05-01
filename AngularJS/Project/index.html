@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appKet">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>KET</title>
+	<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/angular.js"></script>
+</head>
+<body ng-controller="mainCtrl" ng-cloak>
+	<header>
+		<div class="container">
+			<a class="pull-left logo" href="#"><img class="img-responsive" src="img/logo.png" alt=""></a>
+			<nav class="clearfix">
+				<!-- <button class="pull-right " id="btn-nav" type="button">
+					<span></span>
+				</button> -->
+				<ul id="pageNav"  class="nav navbar-nav pull-right">
+					<li ng-repeat="item in menuItems"><a ng-class="{'active': activeMenu == item.id}" ng-click="scrollTo(item.id); activateMenu(item.id);">{{item.name}}</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section id="top" class="top-block">
+			<img class="full-width" src="img/top_img.jpg" alt="">
+			<div class="title-block text-center container">
+				<h1>WE MAKE WEBSITES</h1>
+				<a class="btn btn-white" ng-click="scrollTo('portfolio')">START TOUR</a>
+			</div>
+		</section>
+
+		<section id="services" class="container" ng-controller="serviceCtrl">
+			<div class="row text-center">
+				<div class="col-md-3" ng-repeat="item in serviceItems">
+					<a class="icon {{ item.class }}" ng-class="{active: activeService == item.class}" ng-click="viewService(item.class)">{{ item.name }}</a>
+					<div class="block" ng-class="{'block-l': item.blockL == true}" ></div>
+				</div>
+			</div>
+			<div class="row" ng-switch="activeService">
+				<div class="col-md-9 col-md-offset-2 services-about" ng-switch-when="web">
+					WEB DESIGN: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ut officia corporis, reprehenderit nisi incidunt expedita sed quisquam iure tenetur modi nostrum id vero perferendis sint sequi ipsum, rem unde!
+				</div>
+				<div class="col-md-9 col-md-offset-2 services-about" ng-switch-when="graphic">
+					GRAPHIC DESIGN: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ut officia corporis, reprehenderit nisi incidunt expedita sed quisquam iure tenetur modi nostrum id vero perferendis sint sequi ipsum, rem unde!
+				</div>
+				<div class="col-md-9 col-md-offset-2 services-about" ng-switch-when="programming">
+					PROGRAMMING: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ut officia corporis, reprehenderit nisi incidunt expedita sed quisquam iure tenetur modi nostrum id vero perferendis sint sequi ipsum, rem unde!
+				</div>				
+				<div class="col-md-9 col-md-offset-2 services-about" ng-switch-when="photography">
+					PHOTOGRAPHY: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ut officia corporis, reprehenderit nisi incidunt expedita sed quisquam iure tenetur modi nostrum id vero perferendis sint sequi ipsum, rem unde!
+				</div>
+			</div>
+
+			<ul class="row text-center tab">
+				<li class="col-md-5 col-md-offset-1">START TOUR</li>
+				<li class="col-md-5">FOR ALL DEVICES</li>
+			</ul>
+			<div class="row tab-row">
+				<div class="col-md-5 col-md-offset-1 text-center">
+					<img class="img-responsive" src="img/Phones.jpg" alt="">
+				</div>
+				<div class="col-md-5">
+					<p class="title">Fully Responsive</p>
+					<p>Eum cu tantas legere complectitur, hinc utamur ea eam. Lorem ipsum dolor sit amet, volumus temporibus definitionem id ius, vel ut magna timeam appareat, movet timeam maiorum an ius. <br>	
+					Sea libris dictas lucilius et. Ne cibo urbanitas pri, qui ad populo accusamus. Quod congue ea ius, nisl aperiri sit ut.</p>
+					<button class="btn btn-color" ng-click="scrollTo('contact')">GET NOW</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="portfolio">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<p class="title underline">Our Portfolio</p>
+						<div>Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu, diam erant convenire et vis. Et essent evertitur sea, vis cu ubique referrentur, sed eu dicant expetendis.</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<ul class="filter">
+							<li><a class="btn active">ALL</a></li>
+							<li><a class="btn">WEB</a></li>
+							<li><a class="btn">PHOTOGRAPHY</a></li>
+							<li><a class="btn">GRAPHIC DESIGN</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img  class="img" src="img/img1.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img  class="img" src="img/img2.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img1.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img"  src="img/img2.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img1.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img2.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img2.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img  class="img" src="img/img1.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img2.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img1.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img2.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 nopadding portfolio-block">
+				<img class="img" src="img/img1.jpg" alt="">
+				<div class="float-up">
+					<div class="portfolio-title">
+						<h4>SAMPLE IMAGE</h4>
+						<h5>GRAPHIC DESIGN</h5>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="statistic">
+				<div class="container text-center">
+					<div class="col-sm-3 col-xs-6">
+						<span class="sprite project"></span>
+						<div class="title">3054</div>
+						<div class="stat-desc">COMPLETED PROJECTS</div>
+					</div>
+					<div class="col-sm-3 col-xs-6">
+						<span class="sprite mouse"></span>
+						<div class="title">7 234 873</div>
+						<div class="stat-desc">CLICK PRESED</div>
+					</div>
+					<div class="col-sm-3 col-xs-6">
+						<span class="sprite mail"></span>
+						<div class="title">4670</div>
+						<div class="stat-desc">MAILS SENTED &amp; RECIVED</div>
+					</div>
+					<div class="col-sm-3 col-xs-6">
+						<span class="sprite jokes"></span>
+						<div class="title">939</div>
+						<div class="stat-desc">JOKES TOLDS</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<siction id="about-us">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<p class="title underline">We are the one</p>
+						<div class="mb">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu, diam erant convenire et vis. Et essent evertitur sea, vis cu ubique referrentur, sed eu dicant expetendis.</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-xs-6 team">
+					<figure>
+						<img class="img" src="img/team.jpg" alt="">
+						<figcaption>
+							<div class="figcaption">
+								<span>John Doe</span>
+								<p>Graphic Designer</p>
+							</div>
+						</figcaption>
+					</figure>
+					<p class="about-team text-center">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu.</p>
+					<div class="col-xs-3 social facebook"><a href="#"></a></div>
+					<div class="col-xs-3 social twitter"><a href="#"></a></div>
+					<div class="col-xs-3 social google"><a href="#"></a></div>
+					<div class="col-xs-3 social dribble"><a href="#"></a></div>
+				</div>
+				<div class="col-sm-3 col-xs-6 team">
+					<figure>
+						<img class="img" src="img/team.jpg" alt="">
+						<figcaption>
+							<div class="figcaption">
+								<span>John Doe</span>
+								<p>Graphic Designer</p>
+							</div>
+						</figcaption>
+					</figure>
+					<p class="about-team text-center">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu.</p>
+					<div class="col-xs-3 social facebook"><a href="#"></a></div>
+					<div class="col-xs-3 social twitter"><a href="#"></a></div>
+					<div class="col-xs-3 social google"><a href="#"></a></div>
+					<div class="col-xs-3 social dribble"><a href="#"></a></div>
+				</div>
+				<div class="col-sm-3 col-xs-6 team">
+					<figure>
+						<img class="img" src="img/team.jpg" alt="">
+						<figcaption>
+							<div class="figcaption">
+								<span>John Doe</span>
+								<p>Graphic Designer</p>
+							</div>
+						</figcaption>
+					</figure>
+					<p class="about-team text-center">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu.</p>
+					<div class="col-xs-3 social facebook"><a href="#"></a></div>
+					<div class="col-xs-3 social twitter"><a href="#"></a></div>
+					<div class="col-xs-3 social google"><a href="#"></a></div>
+					<div class="col-xs-3 social dribble"><a href="#"></a></div>
+				</div>
+				<div class="col-sm-3 col-xs-6 team">
+					<figure>
+						<img class="img" src="img/team.jpg" alt="">
+						<figcaption>
+							<div class="figcaption">
+								<span>John Doe</span>
+								<p>Graphic Designer</p>
+							</div>
+						</figcaption>
+					</figure>
+					<p class="about-team text-center">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu.</p>
+					<div class="col-xs-3 social facebook"><a href="#"></a></div>
+					<div class="col-xs-3 social twitter"><a href="#"></a></div>
+					<div class="col-xs-3 social google"><a href="#"></a></div>
+					<div class="col-xs-3 social dribble"><a href="#"></a></div>
+				</div>
+			</div>
+		</siction>
+
+		<siction id="news" ng-controller="newsCtrl">
+			<div class="container mb">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<p class="title underline">Check our news</p>
+						<p class="mb">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu, diam erant convenire et vis. Et essent evertitur sea, vis cu ubique referrentur, sed eu dicant expetendis.</p>
+					</div>
+				</div>
+				<div class="row news-block" ng-repeat="item in items">
+					<div class="col-sm-offset-2 col-sm-1 nopadding text-center">
+						<p class="news-date">{{ item.date | date: 'dd' }}</p>
+						<p>{{ item.date | date: 'MMMM' }}</p>
+					</div>
+					<div class="col-sm-7 news-text">
+						<p class="text-justify"> {{ item.text }} </p>
+						<p class="text-right"><a>Read more</a></p>
+					</div>
+				</div>
+			</div>
+		</siction>
+
+		<section id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<p class="title underline">Contact Us</p>
+						<p class="mb">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu, diam erant convenire et vis. Et essent evertitur sea, vis cu ubique referrentur, sed eu dicant expetendis.</p>
+					</div>
+				</div>
+				<div class="row" ng-controller="registerFormCtrl">
+					<form class="mb col-md-8 col-md-offset-2" name="registrationForm" novalidate ng-submit=submitHandler(registrationForm.$valid)>
+						<div class="row mb">
+							<div class="form-group col-md-6">
+								<div class="input-border">
+									<input class="input-md form-control" required type="text" placeholder="Yor name here" ng-pattern="nameRegex" ng-model="registration.name" name="userName">
+								</div>
+								<p class="error" ng-show="registrationForm.userName.$invalid && registrationForm.userName.$dirty || registrationForm.userName.$error && registrationForm.userName.$dirty">{{ showError(registrationForm.userName.$error )}}</p>
+							</div>
+							<div class="form-group col-md-6">
+								<div class="input-border">
+									<input class="input-md form-control" required type="text" placeholder="Yor mail here" ng-pattern="mailRegex" ng-model="registration.email" name="userEmail">
+								</div>
+								<p class="error" ng-show="registrationForm.userEmail.$invalid && registrationForm.userEmail.$dirty">{{ showError(registrationForm.userEmail.$error )}}</p>
+							</div>
+						</div>
+						<div class="form-group mb">
+							<div class="input-border">
+								<input class="input-md form-control" required type="text" placeholder="Yor message here" ng-pattern="messageRegex" ng-model="registration.message" minlength="20">
+								<p class="error" ng-show="registrationForm.message.$invalid && registrationForm.message.$dirty">{{ showError(registrationForm.userEmail.$error )}}</p>
+							</div>
+						</div>
+						<div class="form-group text-right">
+							<input type="submit" value="Send Message" class="btn-md btn" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="address">
+				<div class="container">
+					<div class="row">
+						<address class="col-md-4 col-md-offset-4 adress-block text-center">
+							<p>Awesome Address 432</p>
+							<a href="mailto:ourmail@sometype.com">ourmail@sometype.com</a>
+							<a href="tel:+321032123343492">+321(0)32 123 343 492</a>
+						</address>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<footer>
+		<div class="container text-center">
+			<p class="">&copy; 2014 <span class="company-name">KET</span>. All Rights Reserved.</p>
+			<a class="social facebook" href="#"></a>
+			<a class="social dribble" href="#"></a>
+			<a class="social twitter" href="#"></a>
+			<a class="social google" href="#"></a>
+		</div>
+		
+		<script src="js/angular-smooth-scroll.js"></script>
+		<script src="js/script.js"></script>
+	</footer>
+</body>
+</html>
