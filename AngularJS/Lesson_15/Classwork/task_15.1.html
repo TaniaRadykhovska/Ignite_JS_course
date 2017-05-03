@@ -1,0 +1,30 @@
+<!-- Используя сервис $parse, реализуйте калькулятор без использования деректив. -->
+<!DOCTYPE html>
+<html lang="en" ng-app="calculator">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 15.1</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+
+	<script>
+		angular.module("calculator", [])
+		.controller("calculatorCtrl", function($scope, $parse) {
+
+            $scope.toCalculate = function () {
+                var fn = $parse($scope.expression);
+                console.log($scope.expression);
+                $scope.result = fn();
+            }
+		})	
+	</script>
+</head>
+<body>
+	<div class="container" ng-controller="calculatorCtrl">
+		<input type="text" ng-model="expression" placeholder="введіть вираз">
+		<button ng-click="toCalculate()">Розрахувати</button> <br>
+		<p>Результат: {{ result }}</p>
+	</div>
+</body>
+</html>
