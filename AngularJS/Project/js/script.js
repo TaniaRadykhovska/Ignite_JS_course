@@ -1,7 +1,24 @@
 
-var app = angular.module("appKet", ["smoothScroll"]);
+var app = angular.module("appKet", ["smoothScroll", "ngRoute"]);
 
-app.controller("mainCtrl", ["$scope", "smoothScroll", function($scope, smoothScroll){
+app.config(['$routeProvider', '$locationProvider',
+	function($routeProvider, $locationProvider) {
+		$routeProvider
+			.when('/:newsId', {
+				templateUrl: 'news.html',
+				controller: 'NewsCtrl',
+				controllerAs: 'news'
+			})
+			.when('/', {
+				templateUrl: 'main.html',
+				controller: 'DataCtrl',
+				controllerAs: 'data'
+			})
+
+		$locationProvider.html5Mode(true);
+	}]);
+
+app.controller("mainCtrl", ["$scope", "smoothScroll", "$http", function($scope, smoothScroll, $http){
 
 	$scope.menuItems = [
 		{ id: "top", name: "HOME"},
@@ -24,12 +41,36 @@ app.controller("mainCtrl", ["$scope", "smoothScroll", function($scope, smoothScr
 		elem = document.getElementById(anchor);
 		if ( elem ) {
 			smoothScroll(elem, options);
-		}			
+		}
 	}
 
-	$scope.activateMenu = function(anchor) {
+	$scope.activateMenu = function (anchor) {
 		$scope.activeMenu = anchor;
 	}
+
+	$http.get("data.json").success(function (response) {
+		$scope.items = response;
+		for (var i in $scope.items) {
+			$scope.items[i].date = new Date($scope.items[i].date);
+		}
+	});
+}]);
+
+app.controller('NewsCtrl', ['$routeParams', '$http', function NewsCtrl ($routeParams, $http) {
+	this.id = $routeParams.newsId;
+	var getArticle = function (response) {
+		for (var i in response) {
+			if (response[i].id == $routeParams.newsId) {
+				this.date = new Date(response[i].date);
+				this.text = response[i].text;
+			}
+		}
+	};
+	$http.get("data.json").success(getArticle.bind(this));
+}]);
+
+app.controller('DataCtrl', ['$http', '$scope', function DataCtrl ($http, $scope) {
+
 }]);
 
 app.controller("serviceCtrl", ["$scope", function($scope) {
@@ -59,23 +100,13 @@ app.controller("registerFormCtrl",["$scope", function($scope) {
 		}
 	}
 	$scope.showError = function (err) {
-        if (angular.isDefined(err)) {
-            if (err.required) {
-                return 'no data entered!'
-            }
-            else if (err.pattern) {
-                return "invalid data!";
-            }
-        }
-    }
+		if (angular.isDefined(err)) {
+			if (err.required) {
+				return 'no data entered!'
+			}
+			else if (err.pattern) {
+				return "invalid data!";
+			}
+		}
+	}
 }]);
-
-app.controller("newsCtrl", function($scope, $http) {
-	$http.get("data.json").success(function (response) {
-		$scope.items = response;
-		for (var i in $scope.items) {
-	        $scope.items[i].date = new Date($scope.items[i].date);
-	    }
-  });
-
-});

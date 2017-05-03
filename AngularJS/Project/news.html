@@ -1,0 +1,9 @@
+<div class="news-block clearfix" style="padding-top: 250px; padding-bottom: 75px;">
+	<div class="col-xs-3 nopadding text-center">
+	<p class="news-date">{{ news.date | date: 'dd' }}</p> <p>{{ news.date | date: 'MMMM' }}</p>
+	</div>
+	<div class="col-xs-9 news-text" style="margin-top: 30px;">
+		<p class="text-justify"> {{ news.text }} </p>
+		<p class="text-right"><a href="/">Back</a></p>
+	</div>
+</div>
