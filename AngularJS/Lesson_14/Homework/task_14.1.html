@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Создайте сервис, который предоставляет стандартные математические операции – сложение, умножение и т.д. Используйте три разных способа для создания сервиса. -->
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>homework 14.1</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	
+	<script>
+	
+	angular.module("myApp", [])
+	.controller('mainCtrl', ['$scope', 'Calculator', function ($scope, Calculator) {
+
+		$scope.msg = 'Результат: ';
+		$scope.output = 'Результат: 0';
+
+		$scope.runCalculator = function (operation) {
+			$scope.output = $scope.msg + Calculator($scope.msg, operation, $scope.input1, $scope.input2 );
+		};
+
+	}])
+	.factory('Calculator', function () {
+		return function (msg, operation, input1, input2) {
+			return  eval( "(" + input1 + operation + input2 + ")" );
+		};
+	})
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="container">
+		<input class="input-sm" type="text" ng-model="input1">
+		<input class="input-sm" type="text" ng-model="input2"> <br>
+		<button class="btn btn-sm btn-info" ng-click="runCalculator('+')">+</button>
+		<button class="btn btn-sm btn-info" ng-click="runCalculator('-')">-</button>
+		<button class="btn btn-sm btn-info" ng-click="runCalculator('*')">*</button>
+		<button class="btn btn-sm btn-info" ng-click="runCalculator('/')">/</button>
+		<h2>{{ output }}</h2>
+	</div>
+</body>
+</html>

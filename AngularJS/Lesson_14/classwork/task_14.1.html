@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- Создайте страницу с кнопкой. Разработайте сервис, который будет считать количество кликов по кнопке и выводить его в консоль. Используйте фабричную функцию для создания сервиса. -->
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 14.1</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	
+	<script>
+	
+	angular.module("myApp", [])
+	.controller('mainCtrl', ['$scope', 'clickCounterService', function ($scope, clickCounterService) {
+
+		$scope.msg = 'clicks: ';
+		$scope.output = 'clicks: 0';
+
+		$scope.countClicks = function () {
+			$scope.output = clickCounterService($scope.msg);
+		};
+
+	}])
+	.factory('clickCounterService', function () {
+		var clickCounter = 1;
+		return function (msg) {
+			var output = msg + clickCounter++;
+			return output;
+		};
+	})
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<button class="btn btn-lg btn-info" ng-click="countClicks()">click here!</button>
+	<h1>{{ output }}</h1>
+</body>
+</html>

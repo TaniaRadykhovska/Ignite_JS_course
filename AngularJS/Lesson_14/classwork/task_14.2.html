@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Создайте сервис из предыдущей задачи, используя метод провайдера. -->
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 14.1</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	
+	<script>
+	
+		angular.module("myApp", [])
+		.provider('clickCounter', function () {
+			return {
+				
+				$get: function () {
+					var clickCounter = 1;
+
+					return function (msg) {
+						return output = msg + clickCounter++;
+					};
+				}
+			}
+
+		})
+
+		.controller('mainCtrl', function ($scope, clickCounter) {
+			$scope.msg = 'clicks: ';
+			$scope.output = 'clicks: 0';
+
+			$scope.countClicks = function () {
+			   $scope.output = clickCounter($scope.msg);
+			};
+		})
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<button class="btn btn-lg btn-info" ng-click="countClicks()">click here!</button>
+	<h1>{{ output }}</h1>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Используйте сервис $http для получения данных из файла data.json, который находится в папке data. Отобразите полученные данные на странице в виде таблицы. Предусмотрите обработку ошибок в запросе (используя Promise). -->
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>classwork 14.1</title>
+	<script src="../../libs/angular.js"></script>
+	<link href="../../libs/bootstrap.css" rel="stylesheet" />
+	<link href="../../libs/bootstrap-theme.css" rel="stylesheet" />
+	
+	<script>
+	
+		angular.module("myApp", [])
+		.controller('mainCtrl', function ($scope, $http) {
+			var promise = $http.get("data/data.json");
+			promise.then(fulfilled, rejected)
+
+			function fulfilled(response) {
+
+				console.log("Status: " + response.status);
+				console.log("Type: " + response.headers("content-type"));
+				console.log("Length: " + response.headers("content-length"));
+
+				$scope.items = response.data;
+			}
+
+			function rejected(error) {
+				console.error(error.status);
+				console.error(error.statusText);
+				$scope.error = "файл не найден";
+			}
+		})
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="container">
+		<table class="table">
+			<thead style="font-weight: bold;">
+				<tr>
+					<td>name</td>
+					<td>price</td>
+				</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="item in items">
+				<td>{{item.name}}</td>
+				<td>{{item.price}}</td>
+			</tr>
+			</tbody>
+		</table>
+		{{ error }}
+	</div>
+</body>
+</html>
